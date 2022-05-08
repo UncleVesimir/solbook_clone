@@ -78,12 +78,7 @@ const Post = ({ post, viewDetail, createComment, name, url }) => {
         </div>
       </div>
       {isCommentSectionOpened && (
-        <CommentSection
-          comments={comments}
-          viewDetail={viewDetail}
-          name={name}
-          url={url}
-        />
+        <CommentSection comments={comments} name={name} url={url} />
       )}
     </div>
   );
