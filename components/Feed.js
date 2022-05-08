@@ -104,23 +104,21 @@ const Feed = ({ connected, name, url }) => {
     try {
       await program.account.postAccount.fetch(postSigner);
     } catch (error) {
-      console.log("createPost catch block");
-      console.log(wallet);
-      const tx = await program.methods
-        .createPost(text, name, url)
-        .accounts({
-          state: stateSigner,
-          post: postSigner,
-          authority: wallet.publicKey,
-          ...defaultAccount,
-        })
-        .rpc();
+      try {
+        await program.methods
+          .createPost(text, name, url)
+          .accounts({
+            state: stateSigner,
+            post: postSigner,
+            authority: wallet.publicKey,
+            ...defaultAccount,
+          })
+          .rpc();
+      } catch (error) {
+        console.error(error);
+      }
 
       console.log(tx);
-      const signedTx = await wallet.signTransaction(tx);
-      console.log(wallet.wallet);
-
-      console.log(signedTx);
     }
     setPosts(await program.account.postAccount.all());
   };
