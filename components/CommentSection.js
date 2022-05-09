@@ -3,17 +3,17 @@ import React, { useState } from "react";
 import CreateComment from "./CreateComment";
 import Comment from "./Comment";
 
-const CommentSection = ({ comments, name, url }) => {
+const CommentSection = ({ comments, name, url, createCommentForPost }) => {
   const style = {
     wrapper: `w-full rounded-b-lg p-[5px] flex justify-center-center flex-col border-t border-gray-300 border-[#3a3b3e] pt-4`,
   };
 
   return (
-    <div styleName={style.wrapper}>
+    <div className={style.wrapper}>
       {comments.map((comment, index) => {
         <Comment comment={comment} key={index} />;
       })}
-      <CreateComment name={name} url={url} />
+      <CreateComment name={name} url={url} createCommentForPost={createCommentForPost} />
     </div>
   );
 };

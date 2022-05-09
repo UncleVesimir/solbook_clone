@@ -1,9 +1,7 @@
 import React from "react";
 import { Image } from "next/image";
 import TimeAgo from "javascript-time-ago";
-import en from "javascript-time-ago/local/en.json";
-import { addLocale } from "next/dist/shared/lib/router/router";
-import { comment } from "postcss";
+import en from "javascript-time-ago/locale/en.json";
 
 //Components
 import ProfileImage from "./ProfileImage";

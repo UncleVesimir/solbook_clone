@@ -8,7 +8,7 @@ import { BiSticker } from 'react-icons/bi'
 //Import Components
 import ProfileImage from "./ProfileImage";
 
-const CreateComment = ({createCommentForPost, name, url}) => {
+const CreateComment = ({createCommentForPost, url}) => {
   const style = {
     wrapper: `flex items-center`,
     profileImage: `rounded-full`,
@@ -22,7 +22,7 @@ const CreateComment = ({createCommentForPost, name, url}) => {
   const [input, setInput] = useState('')
 
 
-  const postComment = event => {
+  const postComment = async event => {
     event.preventDefault()
 
     await createCommentForPost(input)
@@ -32,6 +32,22 @@ const CreateComment = ({createCommentForPost, name, url}) => {
 
   return (<div className={style.wrapper}>
     <ProfileImage imgUrl={url} />
+    <div className={style.inputContainer}>
+      <form className={style.form} onSubmit= {postComment}>
+        <input 
+          type="text"
+          className={style.input}
+          value={input} onChange={event => setInput(event.target.value)}
+          placeholder="Write a commment..."
+          />
+      </form>
+      <div className={style.inputIcons}>
+        <MdInsertEmoticon fontSize={20} className={style.icon} />
+        <TiCameraOutline fontSize={20} className={style.icon} />
+        <RiFileGifLine fontSize={20} className={style.icon} />
+        <BiSticker fontSize={20} className={style.icon} />
+      </div>
+    </div>
   </div>);
 };
 
