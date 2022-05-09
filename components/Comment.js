@@ -29,12 +29,12 @@ const Comment = ({ comment }) => {
         <div className={style.name}>{comment.commenterName}</div>
         <div>{comment.text}</div>
       </div>
-      <div className={style.commentsActionContainer}>
+      <div className={style.commentActionsContainer}>
         <div className={style.actionItem}>Like</div>
         <div className={style.actionItem}>Reply</div>
         <div className={style.timestamp}>
           {timeAgo.format(
-            new Date(comment.postTime.toNumber() * 1000),
+            new Date(comment.commentTime.toNumber() * 1000),
             "twitter-now"
           )}
         </div>

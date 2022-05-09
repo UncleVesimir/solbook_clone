@@ -32,7 +32,9 @@ yarn-error.log*
 # vercel
 .vercel
 
-/facebook_sol
-
-
-
+/facebook_sol/node_modules
+/facebook_sol/.anchor
+/facebook_sol/.DS_Store
+/facebook_sol/target
+/facebook_sol/**/*.rs.bk
+/facebook_sol/test-ledger

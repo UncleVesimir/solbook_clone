@@ -10,10 +10,14 @@ const CommentSection = ({ comments, name, url, createCommentForPost }) => {
 
   return (
     <div className={style.wrapper}>
-      {comments.map((comment, index) => {
-        <Comment comment={comment} key={index} />;
-      })}
-      <CreateComment name={name} url={url} createCommentForPost={createCommentForPost} />
+      {comments.map((comment, index) => (
+        <Comment comment={comment} key={index} />
+      ))}
+      <CreateComment
+        name={name}
+        url={url}
+        createCommentForPost={createCommentForPost}
+      />
     </div>
   );
 };

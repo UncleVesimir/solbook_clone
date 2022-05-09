@@ -1,4 +1,4 @@
-import { useState, useEffect,  } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { BiLike } from "react-icons/bi";
 import { FaRegCommentAlt } from "react-icons/fa";
@@ -12,7 +12,7 @@ TimeAgo.addDefaultLocale(en);
 
 const timeAgo = new TimeAgo("en-US");
 
-const Post = ({ post, getCommentsOnPost, createComment, name, url }) => {
+const Post = ({ post, getCommentsOnPost, saveComment, name, url }) => {
   const style = {
     wrapper: `w-[100%] mt-[1rem] rounded-[0.6rem] bg-[#252526] text-white p-[0.4rem] pb-0`,
     postPublisher: `flex position-relative items-center`,
@@ -35,25 +35,27 @@ const Post = ({ post, getCommentsOnPost, createComment, name, url }) => {
   }, [getComments]);
 
   useEffect(() => {
-    if(comments.length > 0){
-      setisCommentSectionOpened(true)
+    if (comments.length > 0) {
+      setisCommentSectionOpened(true);
     }
-  }, [comments])
-  
+  }, [comments]);
+
   const clockToDateString = (timestamp) => {
     return timeAgo.format(new Date(timestamp.toNumber() * 1000), "twitter-now");
   };
-  
+
   const getComments = async () => {
     const returnedComments = await getCommentsOnPost(post.index);
-    if(returnedComments !== undefined) {
-    setComments(returnedComments);}
+
+    if (returnedComments !== undefined) {
+      setComments(returnedComments);
+    }
   };
 
   const createCommentForPost = async (text) => {
-    await saveComment(text, post.index, post.commentCount)
-  }
-  
+    await saveComment(text, post.index, post.commentCount);
+  };
+
   //if post.commentCount > 0 --> run viewDetail...then setisCommentSectionOpened(true)
   return (
     <div className={style.wrapper}>
@@ -85,15 +87,17 @@ const Post = ({ post, getCommentsOnPost, createComment, name, url }) => {
           onClick={() => setisCommentSectionOpened(!isCommentSectionOpened)}
         >
           <FaRegCommentAlt />
-          <div className={style.reactionText}>Comment</div>
+          <div className={style.reactionText}> Comment</div>
         </div>
         <div className={style.reactionItem}>
           <FiRefreshCw className={style.refreshIcon} />
-          <div className={style.reactionText} onClick={getComments}>Refresh Comments</div>
+          <div className={style.reactionText} onClick={getComments}>
+            Refresh Comments
+          </div>
         </div>
       </div>
       {isCommentSectionOpened && (
-        <CommentSection 
+        <CommentSection
           comments={comments}
           name={name}
           url={url}
